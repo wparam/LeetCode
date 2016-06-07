@@ -36,8 +36,6 @@ var isSameTree = function(p, q) {
         plength = parry.length,
         result = true,
         qarry = serialize(q);
-    console.log(parry);
-    console.log(qarry);
     if(parry.length!==qarry.length)
         return false;
     for(var i = 0; i<plength; i++){
