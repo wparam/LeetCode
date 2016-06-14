@@ -18,5 +18,11 @@
  * @return {number[]}
  */
 var intersect = function(nums1, nums2) {
-    
+    if(!nums1 || nums1.length === 0 || !nums2 || nums2.length===0)
+        return [];
+    nums1.sort();
+    nums2.sort();
+    for(var i = 0, l1 = nums1.length; i<l1; i++){
+        
+    }
 };
