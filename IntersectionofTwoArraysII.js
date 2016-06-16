@@ -23,6 +23,8 @@ var intersect = function(nums1, nums2) {
     nums1.sort();
     nums2.sort();
     for(var i = 0, l1 = nums1.length; i<l1; i++){
-        
+        for(var j = 0; j<i; j++){
+            
+        }
     }
 };
