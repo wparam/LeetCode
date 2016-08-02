@@ -20,13 +20,17 @@
 var intersect = function(nums1, nums2) {
     if(!nums1 || nums1.length === 0 || !nums2 || nums2.length===0)
         return [];
-    nums1.sort();
-    nums2.sort();
+    var count = 0,
+        result = [];
     for(var i = 0, l1 = nums1.length; i<l1; i++){
-        for(var j = 0, l2 = nums2.length; j<l2; j++){
-            if(nums1[i] === nums2[j]){
-                
-            }
-        }
+        var idx = nums2.indexOf(nums1[i]);
+        if(idx>=0){
+            count = idx;
+            result.push(nums1[i]);
+            delete nums2[idx];
+        }  
     }
+    return result;
 };
+
+console.log(intersect([1, 2, 2, 1],[2, 2]));
