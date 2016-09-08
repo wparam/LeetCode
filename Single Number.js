@@ -8,5 +8,6 @@
  * @return {number}
  */
 var singleNumber = function(nums) {
-    
+    for(var i=0, l=nums.length; i<l; i++)
+        if(nums[i])
 };
