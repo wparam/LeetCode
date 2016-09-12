@@ -15,3 +15,11 @@ var isPowerOfThree = function(n) {
 };
 assert.equal(isPowerOfThree(100), false);
 assert.equal(isPowerOfThree(27), true);
+
+
+//Better way, get the max number of 3's power, use divide'
+var isPowerOfThreeBetter = function(n) {
+    var maxpow = Math.round(Math.log(Number.MAX_SAFE_INTEGER)/Math.log(3));
+    return n>0 && n % maxpow === 0;
+};
+
