@@ -10,17 +10,19 @@
  * @return {boolean}
  */
 var isUgly = function(num) {
-    var f2 = num%2,
-        f3 = num%3,
-        f5 = num%5;
-    if(num/2 === 1 )
+    if(!num)
+        return false;
+    if(num === 1)
         return true;
-    if(num/3 =)
-    if(f2 === 0)
-        return isUgly(num/2);
-    if(f3 === 0)
-        return isUgly(num/3);
-    if(f5 === 0)
-        return isUgly(num/5);
-    
+    var col = [2, 3, 5];
+    for(var i=0;i<3; i++){
+        if(num % col[i] === 0){
+            return isUgly(num/col[i]);
+        }
+    }
+    return false;  
 };
+
+console.log(isUgly(6));
+console.log(isUgly(8));
+console.log(isUgly(14));
