@@ -13,7 +13,8 @@
  * @return {ListNode}
  */
 'use strict';
-var util = require('util');
+var util = require('util'),
+    LinkList = require('../lib/linkedlist');
 var mergeTwoLists = function(l1, l2) {
     if(!l1)
         return l2;
@@ -31,7 +32,13 @@ var mergeTwoLists = function(l1, l2) {
         result.push(c2);
         c2 = c2.next;
     }
-    result.sort(function(a, b){return ASD ? a.val>b.val : a.val<b.val;});
+    result.sort(function(a, b){
+        if(a.val > b.val)
+            return 1;
+        if(a.val < b.val)
+            return -1;
+        return 0;
+    });
     for(var i=0,l=result.length;i<l;i++){
         if(i<l-1)
             result[i].next = result[i+1];
@@ -50,4 +57,8 @@ var a2 = {val:6, next:null};
 var a1 = {val:4, next:a2};
 var a0 = {val:2, next: a1};
 
-console.dir(util.inspect(mergeTwoLists(h0, a0), false, null));
+// console.log(LinkList.Deserialize(a0));
+// console.log(util.inspect(LinkList.Serialize([2,4,6]), false, null));
+
+// console.dir(util.inspect(mergeTwoLists(LinkList.Serialize([-10,-9,-6,-4,1,9,9]), LinkList.Serialize([[-5,-3,0,7,8,8]])), false, null));
+console.dir(LinkList.Deserialize(mergeTwoLists(LinkList.Serialize([-10,-9,-6,-4,1,9,9]), LinkList.Serialize([-5,-3,0,7,8,8]))));
