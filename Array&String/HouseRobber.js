@@ -12,5 +12,15 @@
  * @return {number}
  */
 var rob = function(nums) {
-    
+    if(!nums || nums.length === 0)
+        return 0;
+    if(nums.length === 1)
+        return nums[0];
+    if(nums.length ===2)
+        return Math.max(nums[0], nums[1]);
+    var result = 0;
+    for(var i=0, l=nums.length; i<l; i++){
+        
+    }
+    result += rob(nums) 
 };
