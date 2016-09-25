@@ -10,6 +10,8 @@
 /**
  * @param {number[]} nums
  * @return {number}
+ * Solution:
+ * the N time's monty f(n) == max(f(n-1), f(n-2) + n)
  */
 var rob = function(nums) {
     if(!nums || nums.length === 0)
