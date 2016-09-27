@@ -20,9 +20,12 @@ var rob = function(nums) {
         return nums[0];
     if(nums.length ===2)
         return Math.max(nums[0], nums[1]);
-    var result = 0;
-    for(var i=0, l=nums.length; i<l; i++){
+    //return Math.max(rob(nums.slice(0, nums.length-1)), rob(nums.slice(0, nums.length-2)) + nums[nums.length-1]);
+    var i = nums.length-1;
+    while(i>0){
         
+        i--;
     }
-    result += rob(nums) 
 };
+
+console.log(rob([183,219,57,193,94,233,202,154,65,240,97,234,100,249,186,66,90,238,168,128,177,235,50,81,185,165,217,207,88,80,112,78,135,62,228,247,211]));
