@@ -21,14 +21,20 @@ var rob = function(nums) {
         return nums[0];
     if(nums.length ===2)
         return Math.max(nums[0], nums[1]);
-    var max = 0 ;
+    var arrMax = {};
     for(var i=0, l=nums.length; i<l;i++){
-        
+        if(i===0){
+            arrMax[i] = l[i];
+            continue;
+        }
+        if(i===1){
+            arrMax[i] = Math.max(l[0], l[1]);
+            continue;
+        }
+        arrMax[i] = Math.max(arrMax[i-2] + l[i], arrMax[i-1]);
     }
-    return Math.max(l1, l2 + nums[nums.length-1]);
+    return arrMax[i-1];
     //return Math.max(rob(nums.slice(0, nums.length-1)), rob(nums.slice(0, nums.length-2)) + nums[nums.length-1]);
-    
-    
 };
 
 console.log(rob([183,219,57,193,94,233,202,154,65,240,97,234,100,249,186,66,90,238,168,128,177,235,50,81,185,165,217,207,88,80,112,78,135,62,228,247,211]));
