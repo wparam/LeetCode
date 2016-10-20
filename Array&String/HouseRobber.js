@@ -24,14 +24,14 @@ var rob = function(nums) {
     var arrMax = {};
     for(var i=0, l=nums.length; i<l;i++){
         if(i===0){
-            arrMax[i] = l[i];
+            arrMax[i] = nums[i];
             continue;
         }
         if(i===1){
-            arrMax[i] = Math.max(l[0], l[1]);
+            arrMax[i] = Math.max(nums[0], nums[1]);
             continue;
         }
-        arrMax[i] = Math.max(arrMax[i-2] + l[i], arrMax[i-1]);
+        arrMax[i] = Math.max(arrMax[i-2] + nums[i], arrMax[i-1]);
     }
     return arrMax[i-1];
     //return Math.max(rob(nums.slice(0, nums.length-1)), rob(nums.slice(0, nums.length-2)) + nums[nums.length-1]);
