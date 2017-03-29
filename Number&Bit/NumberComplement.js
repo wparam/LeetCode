@@ -17,6 +17,21 @@
  * @param {number} num
  * @return {number}
  */
+
+var assert = require('assert');
 var findComplement = function(num) {
-    
+    if(num===1)
+        return 0;
+    var copy = num,        
+        len = num.toString(2).length,
+        i = 0,
+        result = [];
+    while(copy!==0){
+        result[len-i-1] = copy & 1 ^ 1;
+        copy = copy >> 1;
+        i++;
+    }
+    return parseInt(result.join(''),2);
 };
+
+assert.equal(findComplement(1), 0);
