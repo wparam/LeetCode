@@ -9,5 +9,14 @@
  * @return {string}
  */
 var reverseWords = function(s) {
-    
+    return s.split(' ').map(function(str){
+        var stack=[],
+            result = '';
+        for(var i = str.length-1; i>=0; i--){
+           result+=str[i];
+        }
+        return result;
+    }).join(' ');
 };
+
+console.log(reverseWords("Let's take LeetCode contest"));
