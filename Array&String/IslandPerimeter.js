@@ -15,5 +15,26 @@
  * @return {number}
  */
 var islandPerimeter = function(grid) {
-    
+    var n = 0,
+        m = 0;
+    for(var i = 0, l=grid.length; i<l; i++){
+        for(var j = 0, jl = grid[i].length; j<jl; j++){
+            if(grid[i][j] === 1){
+                n++;
+                if(i-1 >=0 && grid[i-1][j]===1)
+                    m++;
+                if(j-1 >=0 && grid[i][j-1] === 1)
+                    m++;
+            }
+                
+        }
+    }
+    return 4*n-2*m;
 };
+
+var testparam =  [[0,1,0,0],
+ [1,1,1,0],
+ [0,1,0,0],
+ [1,1,0,0]];
+
+ console.log(islandPerimeter(testparam));
