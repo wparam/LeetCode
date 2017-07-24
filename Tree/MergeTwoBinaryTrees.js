@@ -34,5 +34,15 @@
  * @return {TreeNode}
  */
 var mergeTrees = function(t1, t2) {
-    
+    if(!t1)
+        return t2;
+    if(!t2)
+        return t1;
+    while(t1.left || t2.left){
+        mergeTrees(t1, t2);
+    }
+    while(t1.right || t2.right){
+        mergeTrees(t1, t2);
+    }
+    return t1.val + t2.val;
 };
