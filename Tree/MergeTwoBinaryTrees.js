@@ -2,7 +2,7 @@
 //some nodes of the two trees are overlapped while the others are not.
 
 // You need to merge them into a new binary tree. The merge rule is that if two nodes overlap, 
-//then sum node values up as the new value of the merged node. Otherwise, the NOT null node will be used as the node of new tree.
+//then sum node vals up as the new val of the merged node. Otherwise, the NOT null node will be used as the node of new tree.
 
 // Example 1:
 // Input: 
@@ -33,16 +33,23 @@
  * @param {TreeNode} t2
  * @return {TreeNode}
  */
+'use strict';
+const util = require('util');
+const tre = require('../lib/tree.js');
 var mergeTrees = function(t1, t2) {
     if(!t1)
         return t2;
     if(!t2)
         return t1;
-    while(t1.left || t2.left){
-        mergeTrees(t1, t2);
+    t1.val = (t1.val||0)  + (t2.val||0);
+    if(t1.left || t2.left){
+        t1.left = mergeTrees(t1.left, t2.left);
     }
-    while(t1.right || t2.right){
-        mergeTrees(t1, t2);
+    if(t1.right || t2.right){
+        t1.right = mergeTrees(t1.right, t2.right);
     }
-    return t1.val + t2.val;
+    return t1;
 };
+
+console.log(tre.deserializeTree(mergeTrees(tre.serializeTree([1,3,2,5,null, null, null]),
+    tre.serializeTree([2,1,3, null, 4, null, 7]))));
