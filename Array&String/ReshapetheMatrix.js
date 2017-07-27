@@ -37,5 +37,10 @@
  * @return {number[][]}
  */
 var matrixReshape = function(nums, r, c) {
-    
+    let result = [];
+    for(let i = 0; i<r; i++){
+        for(let j = 0; j<c; j++){
+            
+        }
+    }
 };
