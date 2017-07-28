@@ -38,9 +38,26 @@
  */
 var matrixReshape = function(nums, r, c) {
     let result = [];
-    for(let i = 0; i<r; i++){
-        for(let j = 0; j<c; j++){
-            
+    let stack = [];
+    if(!nums || nums.length ===0 || nums[0].length * nums.length !== r*c)   
+        return nums;
+    for(let oi = 0, ol = nums.length; oi<ol; oi++){
+        for(let oj = 0, oll = nums[oi].length; oj < oll; oj++){
+            stack.push(nums[oi][oj]);
         }
     }
+    for(let i = 0; i<r; i++){
+        let temp = [];
+        for(let j = 0; j<c; j++){
+            let ele = stack.shift();
+            temp.push(ele);
+        }
+        result.push(temp);
+    }
+    if(stack.length ===0)
+        return result;
+    return nums;
 };
+
+console.log(matrixReshape([[1,2],[3,4]], 2, 4));
+
