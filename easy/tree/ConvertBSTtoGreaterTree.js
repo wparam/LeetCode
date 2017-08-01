@@ -31,15 +31,18 @@ const util = require('util');
 var tre = require('../../lib/tree.js');
 var convertBST = function(root) {
     if(!root)
-        return 0;
-    if(root.right){
-        root.val += root.right.val;    
+        return null;
+    let sum = 0;
+    let convert = function(node){
+        if(!node)
+            return;
+        convert(node.right);
+        node.val = node.val + sum;
+        sum = node.val;
+        convert(node.left);
     }
-    if(root.left){
-        root.left.val += root.val;
-    }
-    convertBST(root.left);        
-    convertBST(root.right);
+    convert(root); 
+    return root;   
 };
 
 var node = tre.serializeTree([5, 2, 13, 1,3,6]);
