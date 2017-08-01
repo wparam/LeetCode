@@ -1,5 +1,5 @@
-// Given a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to the original key plus sum of all keys 
-//greater than the original key in BST.
+// Given a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to 
+//the original key plus sum of all keys greater than the original key in BST.
 
 // Example:
 
@@ -32,14 +32,16 @@ var tre = require('../../lib/tree.js');
 var convertBST = function(root) {
     if(!root)
         return 0;
+    if(root.right){
+        root.val += root.right.val;    
+    }
     if(root.left){
-        root.val += root.left.val;    
-        root.left.val += root.val + (root.right ? root.right.val: 0);
+        root.left.val += root.val;
     }
     convertBST(root.left);        
     convertBST(root.right);
 };
 
-var node = tre.serializeTree([5, 2, 13]);
+var node = tre.serializeTree([5, 2, 13, 1,3,6]);
 convertBST(node);
 console.log(tre.deserializeTree(node));
