@@ -18,7 +18,7 @@
  */
 'use strict';
 const util = require('util');
-var tre = require('./lib/tree.js');
+var tre = require('../../lib/tree.js');
 var isSameTree = function(p, q) {
     var serialize = function(node){
         var result = [];
