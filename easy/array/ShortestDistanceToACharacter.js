@@ -25,7 +25,10 @@ var shortestToChar = function(S, C) {
             result.push(0);
             continue;
         }
-        
-        while()
+        let finish = null,
+            count = 0;
+        while(true){
+            if(i)
+        }
     }
 };
