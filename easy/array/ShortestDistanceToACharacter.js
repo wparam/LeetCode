@@ -32,11 +32,23 @@ var shortestToChar = function(S, C) {
             if(i - cursor < 0){
                 left = false; 
             }else{
-                
+                if(S[i - cursor] === C){
+                    result.push(cursor);
+                    break;
+                }
             }
             if( i + cursor > l - 1){
                 right = false;
+            }{
+                if(S[i - cursor] === C){
+                    result.push(cursor);
+                    break;
+                }
             }
+            cursor++;
         }
     }
+    return result;
 };
+
+console.log(shortestToChar('loveleetcode', 'e'));
