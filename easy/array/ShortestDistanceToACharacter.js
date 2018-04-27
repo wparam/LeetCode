@@ -39,8 +39,8 @@ var shortestToChar = function(S, C) {
             }
             if( i + cursor > l - 1){
                 right = false;
-            }{
-                if(S[i - cursor] === C){
+            }else{
+                if(S[i + cursor] === C){
                     result.push(cursor);
                     break;
                 }
