@@ -18,36 +18,23 @@
  * @return {number[]}
  */
 var shortestToChar = function(S, C) {
-    let result = [];
-    for(let i = 0, l = S.length; i<l; i++){
+    let result = [],
+        l  = S.length;
+    for(let i = 0, prev = Number.MIN_SAFE_INTEGER / 2; i<l; i++){
         if(S[i] === C){
-            result.push(0);
-            continue;
-        }
-        let flag = true,
-            left = true,
-            right = true,
-            cursor = 1;
-        while(left || right){
-            if(i - cursor < 0){
-                left = false; 
-            }else{
-                if(S[i - cursor] === C){
-                    result.push(cursor);
-                    break;
-                }
-            }
-            if( i + cursor > l - 1){
-                right = false;
-            }{
-                if(S[i - cursor] === C){
-                    result.push(cursor);
-                    break;
-                }
-            }
-            cursor++;
-        }
+            result[i] =  0;
+            prev = i;
+        }else 
+            result[i] = i - prev;
     }
+    for(let i = l - 1, prev = Number.MAX_SAFE_INTEGER / 2; i>=0; i--){
+        if(S[i] === C){
+            result[i] =  0;
+            prev = i;
+        }else 
+            result[i] = Math.min(result[i],  prev - i);
+    }
+
     return result;
 };
 
