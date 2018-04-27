@@ -45,4 +45,4 @@ var isToeplitzMatrix = function(matrix) {
     return true;
 };
 
-console.log(isToeplitzMatrix([[1,2],[2,2]]));
+console.log(isToeplitzMatrix([[1,2],[2,2]]));  
