@@ -27,5 +27,11 @@
  * @return {boolean}
  */
 var hasAlternatingBits = function(n) {
-    n.toString(2)
+    var s = n.toString(2);
+    for(let i =0, l=s.length; i<l; i++){
+        if(s[i] === s[i+1])
+            return false;
+    }
+    return true;
 };
+console.log(hasAlternatingBits(10));
