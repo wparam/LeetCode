@@ -87,6 +87,21 @@ var prime4 = function(n){
 
 };
 
+var checkPrime = function(n){
+    let sqt = Math.sqrt(n);
+    if(n === 1) 
+        return false;
+    if(n === 2)
+        return true;
+    if(n % 2 === 0)
+        return false;
+    for(let i=3; i<=sqt; i+=2){
+        if(n % i === 0)
+            return false;
+    }
+    return true;
+};
+
 // var s = new Date();
 
 // prime1(10000000);
@@ -97,13 +112,16 @@ var prime4 = function(n){
 // prime2(10000000);
 // console.log('use %s s', (new Date() - s1)/1000);
 
-var s2 = new Date();
-prime3(10000000);
-console.log('use %s s', (new Date() - s2)/1000);
+// var s2 = new Date();
+// prime3(1000000);
+// console.log('use %s s', (new Date() - s2)/1000);
 
-var s3 = new Date();
-prime4(10000000);
-console.log('use %s s', (new Date() - s3)/1000);
+// var s3 = new Date();
+// prime4(1000000);
+// console.log('use %s s', (new Date() - s3)/1000);
+
+
+console.log(checkPrime(1));
 
 
 
