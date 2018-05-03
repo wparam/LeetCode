@@ -21,19 +21,16 @@ var letterCasePermutation = function(S) {
     let result = [];
     let map = new Map();
     for(let i = 0, l = S.length; i<l; i++){
-        if(!/[0-9]/g.test(S[i])){
-            let lower = S.substring(0, i) + S[i].toLowerCase()  + S.slice(i+1),
-                upper = S.substring(0, i) + S[i].toUpperCase()  + S.slice(i+1);
-            if(!map.has(lower))
-                map.set(lower, [lower]);
-            else{
-                if(map.get(lower).indexOf(lower))
-            }
-            result.push();
-            result.push(S.substring(0, i) + S[i].toLowerCase()  + S.slice(i+1));
+        if(!/\d/gi.test(S)){
+
+        }
+        else{
+            
         }
     }
-    return result;
 };
 
+var upperNextChar = function(){
+
+};
 console.log(letterCasePermutation('a1b2'));
