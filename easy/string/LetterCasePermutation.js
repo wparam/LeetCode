@@ -18,19 +18,22 @@
  * @return {string[]}
  */
 var letterCasePermutation = function(S) {
-    let result = [];
+    let result = [''];
     let map = new Map();
     for(let i = 0, l = S.length; i<l; i++){
-        if(!/\d/gi.test(S)){
-
+        if(!/\d/gi.test(S[i])){
+            let temp = [];
+            result.forEach((n) => {
+                temp.push(n + S[i].toLowerCase());
+                temp.push(n + S[i].toUpperCase());
+            });
+            result = temp;
         }
         else{
-            
+            result = result.map(n=>n+S[i]);
         }
     }
+    return result;
 };
 
-var upperNextChar = function(){
-
-};
-console.log(letterCasePermutation('a1b2'));
+console.log(letterCasePermutation('3z4'));
