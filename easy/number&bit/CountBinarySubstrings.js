@@ -1,4 +1,5 @@
-// Give a string s, count the number of non-empty (contiguous) substrings that have the same number of 0's and 1's, and all the 0's and all the 1's in these substrings are grouped consecutively.
+// Give a string s, count the number of non-empty (contiguous) substrings that have the same number of 0's and 1's, 
+//and all the 0's and all the 1's in these substrings are grouped consecutively.
 
 // Substrings that occur multiple times are counted the number of times they occur.
 
@@ -24,7 +25,17 @@
  * @return {number}
  */
 var countBinarySubstrings = function(s) {
-    for(let i = 2, l = s.length; i<l; i++){
-        
-    }
+    let result = 0;
+    let lt = '01', rt = '10';
+    for(let i = 1, l = s.length/2; i<=l; i++){
+        if(s.indexOf(lt)>=0)
+            result++;
+        if(s.indexOf(rt) >= 0)
+            result++;
+        lt = '0' + lt + '1';
+        rt = '1' + rt + '0';
+    }   
+    return result;
 };
+
+console.log(countBinarySubstrings('00110011'));
