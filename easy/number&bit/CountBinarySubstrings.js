@@ -24,5 +24,7 @@
  * @return {number}
  */
 var countBinarySubstrings = function(s) {
-    
+    for(let i = 2, l = s.length; i<l; i++){
+        
+    }
 };
