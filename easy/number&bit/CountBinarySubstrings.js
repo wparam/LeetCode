@@ -26,16 +26,21 @@
  */
 var countBinarySubstrings = function(s) {
     let result = 0;
-    let lt = '01', rt = '10';
-    for(let i = 1, l = s.length/2; i<=l; i++){
-        if(s.indexOf(lt)>=0)
-            result++;
-        if(s.indexOf(rt) >= 0)
-            result++;
-        lt = '0' + lt + '1';
-        rt = '1' + rt + '0';
-    }   
+    let ar = [1],
+        t = 0;
+    for(let i = 1, l = s.length; i<l; i++){
+        if(s[i] === s[i-1]){
+            ar[t]++;
+        }else{
+            ar[++t] = 1;
+        }
+    }
+    for(let i = 1, l = ar.length; i<l; i++){
+        result += Math.min(ar[i], ar[i-1]);
+    }
     return result;
 };
 
-console.log(countBinarySubstrings('00110011'));
+
+
+console.log(countBinarySubstrings("00110011"));
