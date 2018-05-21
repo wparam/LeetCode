@@ -12,4 +12,15 @@ var maoPao = function(arr, asc){
     return arr;
 };
 
-console.log(maoPao([4,2,1,3,7,4,8,4,6,9]));
+var insertSort = (arr) => {
+    for(let i = 1, l = arr.length; i<l; i++){
+        let temp = arr[i];
+        for(var j = i-1; j >= 0 && arr[j]>temp; j--){
+            arr[j+1] = arr[j];
+        }
+        arr[j+1] = temp;
+    }
+    return arr;
+};
+
+console.log(insertSort([4,2,1,3,7,4,8,4,6,9]));
