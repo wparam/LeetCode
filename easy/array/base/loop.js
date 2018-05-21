@@ -10,7 +10,7 @@ var maoPao = function(arr, asc){
         }
     }
     return arr;
-};
+};  
 
 var insertSort = (arr) => {
     for(let i = 1, l = arr.length; i<l; i++){
