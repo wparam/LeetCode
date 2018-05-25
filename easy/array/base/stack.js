@@ -18,7 +18,12 @@ class Stack{
     }
 }
 
-const signs = [ ')', '*', '/', '+', '-', '(' ];
+const signs = {
+    '*': 10,
+    '/': 10,
+    '+': 1,
+    '-': 1
+};
 
 var transform = (form) => {
     let stack = new Stack();
@@ -33,7 +38,11 @@ var transform = (form) => {
             result.push(parseInt(form.substring(i, j)));
             i = --j;
         }else{
-            console.log(form[i]);
+            if(stack.readPop() < signs[form[i]] || form[i] === '(')
+                stack.push(form[i]);
+            else {
+                
+            }
         }
     }
     return result;
