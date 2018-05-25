@@ -22,6 +22,26 @@
             "outDir": null
         },
         {
+            "name": "Launch Leet",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "/home/jason/.nvm/versions/node/v6.11.0/bin/node",
+            "program": "${workspaceRoot}/easy/array/base/stack.js",
+            "stopOnEntry": false,
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": null,
+            "runtimeArgs": [
+                "--nolazy"
+            ],
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "console": "internalConsole",
+            "sourceMaps": false,
+            "outDir": null
+        },
+        {
             "name": "Attach",
             "type": "node",
             "request": "attach",
