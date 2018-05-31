@@ -19,24 +19,16 @@
 
 /**
  * @param {number} N
+ * 
  * @return {number}
  */
 var rotatedDigits = function(N) {
-    let sum = 0,
-        indx = 0;
-    while(N % 10 !== 0 ){
-        N = parseInt(N / 10);
+    let tg = [];
+    for(let i = 0; i<N; i++){
+        if(i < 10){
+            
+        }
     }
-    if(N >= 2 )
-        sum++;
-    if(N >= 5)
-        sum++;
-    if(N >= 6)
-        sum++;
-    if(N >=9 )
-        sum++;
-
-    return sum;
 
 };
 
