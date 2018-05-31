@@ -24,5 +24,29 @@
  * @return {number}
  */
 var findShortestSubArray = function(nums) {
-    
+    let map = new Map(),
+        left = new Map(),
+        right = new Map();
+    let longest = 1;
+    for(let i = 0, l = nums.length; i<l; i++){
+        if(map.has(nums[i])){
+            let v = map.get(nums[i]);
+            map.set(nums[i], ++v);
+            longest = Math.max(longest, v);
+        }else{
+            map.set(nums[i], 1);
+            left.set(nums[i], i);
+        }
+        right.set(nums[i], i);
+    }
+    let result = [];
+    let min = Number.MAX_SAFE_INTEGER;
+    for (var [key, value] of map.entries()) {
+        if(longest === value)
+            min = Math.min(min, right.get(key) - left.get(key));
+    }
+    return ++min;
 };
+
+
+console.log(findShortestSubArray([1,2,2,3,1,4,2]));
