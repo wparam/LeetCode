@@ -1,3 +1,10 @@
+//The reason why put this title into base is because: 
+//1: it is a different kind of issue, it makes you think the previous result you have finished
+//2: and the previous operation or result can be used as the check(input) to the new ones
+
+//Conclude: this kind of issue makes a new way, think not only the previous ones as output, but also input
+
+
 // X is a good number if after rotating each digit individually by 180 degrees, 
 //we get a valid number that is different from X.  Each digit must be rotated - we cannot choose to leave it alone.
 
@@ -44,7 +51,6 @@ var rotatedDigits = function(N) {
                 tg[i] = 2;
                 count ++;
             }
-                
         }
     }
     return count;
