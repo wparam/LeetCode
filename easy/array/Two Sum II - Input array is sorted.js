@@ -20,7 +20,18 @@
  * @return {number[]}
  */
 var twoSum = function(numbers, target) {
-    
+    let left = 0,
+        right = numbers.length - 1;
+    while(left !== right){
+        let v = numbers[left] + numbers[right];
+        if(v === target)
+            return [left + 1, right + 1];
+        if(v > target)
+            right --;
+        if(v < target)
+            left ++;
+    }
+    return [null, null];
 };
 
 console.log(twoSum([-1, 0], -1));
