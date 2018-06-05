@@ -22,5 +22,28 @@
  * @return {number}
  */
 var longestPalindrome = function(s) {
-    
+    let map = new Map();
+    for(let i = 0, l = s.length; i<l; i++){
+        if(!map.has(s[i]))
+            map.set(s[i], 1);
+        else
+            map.set(s[i], map.get(s[i]) + 1);
+    }
+    console.log(map);
+    let result = 0,
+        hasOdd = false;
+    for(let [key, v] of map){
+        if(v % 2 === 0){
+            result += v;
+            continue;
+        }
+        else{
+            hasOdd = true;
+            result += (v - 1);
+        }
+    }
+    return result + (hasOdd ? 1 : 0);
 };
+
+
+console.log(longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"));
