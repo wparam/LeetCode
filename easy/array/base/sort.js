@@ -39,6 +39,35 @@ var insertSort = (arr) => {
     return arr;
 };
 
+var mergeSort = (arr, left, right) => {
+    if(left >= right)
+        return;
+    let mid = parseInt( (left + right) / 2 );
+    mergeSort(arr, left, mid);
+    mergeSort(arr, mid + 1, right);
+    mergeArray(arr, left, mid, right);
+
+    //[left, mid], [mid+1, right]
+    function mergeArray(arr, left, mid, right){
+        let i = left, j = mid + 1;
+        let temp = [], k = 0;
+        //after below while, i or j must bigger than their boundary
+        while( i <= mid && j <= right ) {
+            if(arr[i]<arr[j]){
+                temp[k++] = arr[i++];
+            }else{
+                temp[k++] = arr[j++];
+            }
+        }
+        while(i<=mid)
+            temp[k++] = arr[i++];
+        while(j<=right)
+            temp[k++] = arr[j++];
+        for(let i = left; i<=right; i++)
+            arr[i] = temp[i-left];
+    };
+    return arr;
+};
 
 
-console.log(selectSort([4,2,1,3,7,4,8,4,6,9]));
+console.log(mergeSort([4,2,1,3,7,4,8,4,6,9], 0, 9));
