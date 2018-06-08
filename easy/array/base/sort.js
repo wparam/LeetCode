@@ -16,14 +16,14 @@ var selectSort = (arr) => {
     let min = 0, temp = 0;
     for(let i = 0, l = arr.length - 1; i<l; i++){
         min = i;
-        for(let j = 1, jl=arr.length; j<jl; j++ ){
-            if(arr[j] < arr[min])
+        for(let j = i+1, jl=arr.length; j<jl; j++ ){
+            if(arr[j] < arr[min]){
                 min = j;
+            }
         }
         temp = arr[min];
         arr[min] = arr[i];
         arr[i] = temp;
-        console.log(arr);
     }
     return arr;
 };
