@@ -69,6 +69,25 @@ var mergeSort = (arr, left, right) => {
     return arr;
 };
 
+var bucketSort = (arr) => {
+    let bucket = [],
+        result = [];
+    for(let i = 0,l=arr.length; i<l; i++){
+        if(bucket[arr[i]] === undefined){
+            bucket[arr[i]] = 1; 
+        }
+        else{
+            bucket[arr[i]]++;
+        }
+    }
+    for(let i=0, l=bucket.length; i<l; i++){
+        if(bucket[i]!==undefined)
+            for(let j = 0; j<bucket[i]; j++)
+                result.push(i);
+    }
+    return result;
+};
+
 var quickSort = (arr) => {
     var pivot = arr[0];
     let i = 0, j = arr.length - 1;
@@ -86,4 +105,4 @@ var quickSort = (arr) => {
     return arr;
 };
 
-console.log(quickSort([6,2,1,3,7,11,8,10,4,9], 0, 9));
+console.log(bucketSort([6,2,1,3,7,11,8,10,4,9], 0, 9));
