@@ -69,5 +69,21 @@ var mergeSort = (arr, left, right) => {
     return arr;
 };
 
+var quickSort = (arr) => {
+    var pivot = arr[0];
+    let i = 0, j = arr.length - 1;
+    while(i < j){
+        if(arr[i] < pivot){
+            i++;
+        }
+        if(arr[j]>=pivot){
+            j--;
+        }
+        let temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    return arr;
+};
 
-console.log(mergeSort([4,2,1,3,7,4,8,4,6,9], 0, 9));
+console.log(quickSort([6,2,1,3,7,11,8,10,4,9], 0, 9));
