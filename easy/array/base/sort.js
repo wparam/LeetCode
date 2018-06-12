@@ -1,3 +1,11 @@
+var assert = require('assert');
+
+var swap = (arr, i , j) => {
+    let temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+};
+
 var bubbleSort = (arr) => {
     let temp = 0;
     for(let i = 0, l = arr.length; i<l; i++){
@@ -88,21 +96,94 @@ var bucketSort = (arr) => {
     return result;
 };
 
-var quickSort = (arr) => {
-    var pivot = arr[0];
-    let i = 0, j = arr.length - 1;
-    while(i < j){
-        if(arr[i] < pivot){
-            i++;
+var quickSort = (() => {
+    //When choose the most left one as pivot
+    var quickSort1 = (arr, left, right) => {
+        if(left >= right)
+            return;
+        var pivot = arr[left];
+        let i = left, j = right;
+        while(i !== j){
+            while(i < j && arr[j] >= pivot){
+                j--;
+            }
+            while(i < j && arr[i] <= pivot){
+                i++;
+            }
+            if(i!==j){
+                let temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
         }
-        if(arr[j]>=pivot){
-            j--;
-        }
-        let temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-    return arr;
-};
+        arr[left] = arr[i];
+        arr[i] = pivot;
 
-console.log(bucketSort([6,2,1,3,7,11,8,10,4,9], 0, 9));
+        quickSort(arr, left, i-1);
+        quickSort(arr, i+1, right);
+
+        return arr;
+    };
+
+    //pivot = arr[right]
+    var quickSort2 = (arr, left, right) => {
+        if( left >= right )
+            return;
+        let i = left, j = right;
+        let pivot = arr[right];
+        while(i !== j){
+            while(i < j && arr[i]<=pivot)
+                i++;
+            while(i < j && arr[j]>=pivot)
+                j--;
+            if(i !== j){
+                let temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+            }
+        }
+        //exchange pivot
+        arr[right] = arr[i];
+        arr[i] = pivot;
+        quickSort2(arr, left, i-1);
+        quickSort2(arr, i+1, right);
+        return arr;
+    };
+
+    //pivot = Math.floor(right + left)
+    //when pivot is not leftmost nor rightmost, it is 
+    var quickSort3 = (arr, left, right) => {
+        if(left >= right)
+            return;
+        let i = left, j = right;
+        let pivotIdx = Math.floor((left + right)/2);
+        let pivot = arr[pivotIdx];
+        console.log(`left=${left}, right=${right}, pivot=${pivot}, pivotIdx=${pivotIdx}`);
+        while(i <= j){
+            while(i<=j && arr[j]>pivot)
+                j--;
+            while(i<=j && arr[i]<pivot)
+                i++;
+            console.log(`i=${i}, j=${j}`);
+            console.log(arr);
+            if(i <=j){
+                swap(arr, i, j);
+                //if cursor includes pivot, then need ++ after swap
+                j--;
+                i++;
+            }
+        }
+        console.log(arr);
+        if(left < i -1)
+            quickSort3(arr, left, i - 1);
+        if( i < right)
+            quickSort3(arr, i, right);
+        return arr;
+    };
+
+    return quickSort3;
+})();
+
+
+
+console.log(quickSort([6,22,1,3,7,11,8,10,4,9,12,4,15,62,13,2], 0, 15));
