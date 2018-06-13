@@ -1,5 +1,44 @@
 var assert = require('assert');
 
+class SortValidate{
+    constructor() {
+        this.seeds = this.generateSeeds();
+        this.correct = this.seeds.slice().sort((a,b) => {
+            return a > b ? 1 : ((a ===b ) ? 0 : -1);
+        });
+    }
+    generateSeeds(){
+        let seeds = [],
+            l = 20;
+        for(let i=0; i<l; i++){
+            seeds.push(
+                parseInt(Math.random() * l * 3)
+            );
+        }
+        return seeds;   
+    }
+    check(sortFunc, ...params){
+        if(typeof sortFunc !== 'function'){
+            console.error('Input Sort Func is not right');
+            return;
+        }
+        let remoteResult = sortFunc(this.seeds, ...params);
+        assert.strictEqual(remoteResult.length, this.correct.length, 'Compare failed, length not equal');
+
+        for(let i=0, l=this.correct.length; i<l; i++){
+            if(remoteResult[i]!==this.correct[i]){
+                console.log(this.seeds);
+                console.log(this.correct);
+                console.log(remoteResult);
+                assert.strictEqual(false, true, `Not equal on item index: ${i}`);
+            }
+        }
+        console.log('Compare Success');
+    }
+}
+
+var comp = new SortValidate();
+
 var swap = (arr, i , j) => {
     let temp = arr[i];
     arr[i] = arr[j];
@@ -158,22 +197,29 @@ var quickSort = (() => {
         let i = left, j = right;
         let pivotIdx = Math.floor((left + right)/2);
         let pivot = arr[pivotIdx];
-        console.log(`left=${left}, right=${right}, pivot=${pivot}, pivotIdx=${pivotIdx}`);
+        //console.log(`left=${left}, right=${right}, pivot=${pivot}, pivotIdx=${pivotIdx}`);
         while(i <= j){
+            //this i===j is used to do compare arr[j] > pivot one more time, since wen i and j 
+            //are moved together from last compare like this:
+            //15  62  13 --
+            //|       |
+            //i       j
+            //after swap it is 13  62  15, so i and j both point to 62, now we need test 62 is 
+            //bigger than pivot or not, so i<=j here, we have to do another test when i===j, 
+            //otherwise 62 won't be determined, since i and j are moved to 62 inevitablly
             while(i<=j && arr[j]>pivot)
                 j--;
             while(i<=j && arr[i]<pivot)
                 i++;
-            console.log(`i=${i}, j=${j}`);
-            console.log(arr);
-            if(i <=j){
+            // console.log(`i=${i}, j=${j}`);
+            // console.log(arr.join(','));
+            if(i <= j){
                 swap(arr, i, j);
                 //if cursor includes pivot, then need ++ after swap
                 j--;
                 i++;
             }
         }
-        console.log(arr);
         if(left < i -1)
             quickSort3(arr, left, i - 1);
         if( i < right)
@@ -184,6 +230,6 @@ var quickSort = (() => {
     return quickSort3;
 })();
 
+comp.check(quickSort, 0, 19);
 
-
-console.log(quickSort([6,22,1,3,7,11,8,10,4,9,12,4,15,62,13,2], 0, 15));
+// console.log(quickSort([6,22,1,3,7,11,8,10,4,9,12,4,15,62,13,2], 0, 15));
