@@ -227,7 +227,7 @@ var quickSort = (() => {
         if(left < i-1)
             quickSort3(arr, left, i - 1);
         else
-            console.log(`left gt than j: left=${left}, j=${j}`);
+            console.log(`left gt than j: left=${left}, j=${j}, i=${i}`);
         if( i < right)
             quickSort3(arr, i, right);
         return arr;
