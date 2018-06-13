@@ -1,35 +1,38 @@
 var assert = require('assert');
 
+const testArrayLength = 200;
+
 class SortValidate{
     constructor() {
-        this.seeds = this.generateSeeds();
-        this.correct = this.seeds.slice().sort((a,b) => {
-            return a > b ? 1 : ((a ===b ) ? 0 : -1);
-        });
     }
     generateSeeds(){
         let seeds = [],
-            l = 20;
+            l = testArrayLength;
         for(let i=0; i<l; i++){
             seeds.push(
-                parseInt(Math.random() * l * 3)
+                parseInt(Math.random() * l * 8)
             );
         }
         return seeds;   
     }
     check(sortFunc, ...params){
+        let seeds = this.generateSeeds();
+        let correct = seeds.slice().sort((a,b) => {
+            return a > b ? 1 : ((a ===b ) ? 0 : -1);
+        });
         if(typeof sortFunc !== 'function'){
             console.error('Input Sort Func is not right');
             return;
         }
-        let remoteResult = sortFunc(this.seeds, ...params);
-        assert.strictEqual(remoteResult.length, this.correct.length, 'Compare failed, length not equal');
+        let remoteResult = sortFunc(seeds, ...params);
+        assert.strictEqual(remoteResult.length, correct.length, 'Compare failed, length not equal');
 
-        for(let i=0, l=this.correct.length; i<l; i++){
-            if(remoteResult[i]!==this.correct[i]){
-                console.log(this.seeds);
-                console.log(this.correct);
-                console.log(remoteResult);
+        for(let i=0, l=correct.length; i<l; i++){
+            if(remoteResult[i]!==correct[i]){
+                console.log(seeds.join(','));
+                console.log(remoteResult.join(','));
+                console.log(correct.join(','));
+                
                 assert.strictEqual(false, true, `Not equal on item index: ${i}`);
             }
         }
@@ -197,7 +200,7 @@ var quickSort = (() => {
         let i = left, j = right;
         let pivotIdx = Math.floor((left + right)/2);
         let pivot = arr[pivotIdx];
-        //console.log(`left=${left}, right=${right}, pivot=${pivot}, pivotIdx=${pivotIdx}`);
+        // console.log(`left=${left}, right=${right}, pivot=${pivot}, pivotIdx=${pivotIdx}`);
         while(i <= j){
             //this i===j is used to do compare arr[j] > pivot one more time, since wen i and j 
             //are moved together from last compare like this:
@@ -213,15 +216,18 @@ var quickSort = (() => {
                 i++;
             // console.log(`i=${i}, j=${j}`);
             // console.log(arr.join(','));
+            //the reason for i<=j instead of i<j, is used to prevent infinite loop, since when program reach this point,
+            //i could equal to j and both arr[i] and arr[j] equals to pivot, this leads to infinite loop
             if(i <= j){
                 swap(arr, i, j);
-                //if cursor includes pivot, then need ++ after swap
                 j--;
                 i++;
             }
         }
-        if(left < i -1)
+        if(left < i-1)
             quickSort3(arr, left, i - 1);
+        else
+            console.log(`left gt than j: left=${left}, j=${j}`);
         if( i < right)
             quickSort3(arr, i, right);
         return arr;
@@ -230,6 +236,7 @@ var quickSort = (() => {
     return quickSort3;
 })();
 
-comp.check(quickSort, 0, 19);
+comp.check(quickSort, 0, testArrayLength - 1);
+comp.check(quickSort, 0, testArrayLength - 1);
 
-// console.log(quickSort([6,22,1,3,7,11,8,10,4,9,12,4,15,62,13,2], 0, 15));
+console.log(quickSort([6,22,1,3,7,11,8,10,4,9,12,4,15,62,13,2], 0, 15));
