@@ -214,8 +214,7 @@ var quickSort = (() => {
                 j--;
             while(i<=j && arr[i]<pivot)
                 i++;
-            // console.log(`i=${i}, j=${j}`);
-            // console.log(arr.join(','));
+            //when i===j at this point, it means arr[i]==arr[j]==pivot, i and j point to pivot or same value with pivot
             //the reason for i<=j instead of i<j, is used to prevent infinite loop, since when program reach this point,
             //i could equal to j and both arr[i] and arr[j] equals to pivot, this leads to infinite loop
             if(i <= j){
@@ -223,11 +222,17 @@ var quickSort = (() => {
                 j--;
                 i++;
             }
+            if(i-2 === j && pivot !== arr[i-1]){
+                console.log('never happend');
+            }
         }
+        //after the loop, i and j have the below relation:
+        //1: j = i - 1, either last move was made by i or j
+        //2: j = i - 2, this is because 
         if(left < i-1)
             quickSort3(arr, left, i - 1);
-        else
-            console.log(`left gt than j: left=${left}, j=${j}, i=${i}`);
+        // else
+            // console.log(`left gt than j: left=${left}, j=${j}, i=${i}`);
         if( i < right)
             quickSort3(arr, i, right);
         return arr;
@@ -236,7 +241,9 @@ var quickSort = (() => {
     return quickSort3;
 })();
 
-comp.check(quickSort, 0, testArrayLength - 1);
-comp.check(quickSort, 0, testArrayLength - 1);
+for(let i=0; i<10; i++){
+    comp.check(quickSort, 0, testArrayLength - 1);
+    comp.check(quickSort, 0, testArrayLength - 1);
+}
 
-console.log(quickSort([6,22,1,3,7,11,8,10,4,9,12,4,15,62,13,2], 0, 15));
+console.log(quickSort([30,7,34,34], 0, 3));
