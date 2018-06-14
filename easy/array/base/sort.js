@@ -241,6 +241,11 @@ var quickSort = (() => {
     return quickSort3;
 })();
 
+//wait after finish tree
+var hashSort = (arr) =>{
+
+}
+
 for(let i=0; i<10; i++){
     comp.check(quickSort, 0, testArrayLength - 1);
     comp.check(quickSort, 0, testArrayLength - 1);
