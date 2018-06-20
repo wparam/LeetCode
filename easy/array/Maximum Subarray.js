@@ -14,5 +14,12 @@
  * @return {number}
  */
 var maxSubArray = function(nums) {
-    
+    let sum = Number.MIN_SAFE_INTEGER;
+    for(let i=0, l=nums.length; i<l; i++){
+        if(sum < 0)
+            sum = nums[i];
+        else
+            sum+=nums[i];
+        
+    }
 };
