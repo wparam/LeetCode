@@ -15,11 +15,17 @@
  */
 var maxSubArray = function(nums) {
     let sum = Number.MIN_SAFE_INTEGER;
+    let max = Number.MIN_SAFE_INTEGER;
     for(let i=0, l=nums.length; i<l; i++){
         if(sum < 0)
             sum = nums[i];
         else
             sum+=nums[i];
-        
+        if(max<sum ){
+            max = sum;
+        }
     }
+    return max;
 };
+
+console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]));
