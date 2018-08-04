@@ -14,9 +14,18 @@
  * @return {string}
  */
 var addStrings = function(num1, num2) {
-    let addon = 0,
-        result = [];
-    while(num1)
+    let result = [];
+    let inc = 0;
+    for(let i = 0, l = Math.max(num1.length, num2.length); i<l; i++){
+        let left = num1[num1.length-1-i] || 0,
+            right = num2[num2.length-1-i] ||0;
+        let s = parseInt(left) + parseInt(right) + inc;
+        result.unshift(s % 10);
+        inc = Math.floor(s / 10);
+    }
+    if(inc > 0)
+        result.unshift(inc);
+    return result.join('');
 };
 
 console.log(addStrings('9', '99'));
