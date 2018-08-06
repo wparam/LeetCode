@@ -89,6 +89,19 @@ var insertSort = (arr) => {
     return arr;
 };
 
+var insertSortWithWhile = (arr) => {
+    for(let i = 1, l = arr.length; i<l; i++){
+        let cur = arr[i];
+        let j = i;
+        while(arr[j-1] > cur){
+            arr[j] = arr[j-1];
+            j--;
+        }
+        arr[j] = cur;
+    }
+    return arr;
+};
+
 var mergeSort = (arr, left, right) => {
     if(left >= right)
         return;
