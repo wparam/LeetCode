@@ -1,20 +1,30 @@
 var insertSort = (arr) => {
-    for(let i = 0, l = arr.length; i<l; i++){
-        let min = Number.MAX_SAFE_INTEGER;
-        let min_indx = -1;
-        for(let j = i; j<l; j++){
-            if(arr[j] < min){
-                min = arr[j];
-                min_indx = j;
-            }
-        }
-        let temp = arr[i];
-        arr[i] = arr[min_indx];
-        arr[min_indx] = temp;
+    
+}
 
+var merge =  (arr, left, mid, right) => {
+    let i = left, j = mid + 1;
+    let temp = [];
+    while(i <= mid || j <= right){
+        if(arr[i] < arr[j]){
+            temp.push(arr[i]);
+            i++;
+        }            
+        else{
+            temp.push(arr[j]);
+            j++;
+        }
     }
-    return arr;
+    if(i === mid)
+        for(; j<= right; j++){
+            temp.push(arr[j]);
+        }
+    else
+        for(; i<= mid; i++){
+            temp.push(arr[i]);
+        }
+    return temp;
 }
 
 
-console.log(insertSort([7,9,4,2,5,6]));
+console.log(insertSort([7,9,4,2,5,6,10,3,32,15,26]));
