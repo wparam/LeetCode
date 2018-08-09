@@ -1,30 +1,23 @@
-var insertSort = (arr) => {
-    
-}
-
-var merge =  (arr, left, mid, right) => {
-    let i = left, j = mid + 1;
-    let temp = [];
-    while(i <= mid || j <= right){
-        if(arr[i] < arr[j]){
-            temp.push(arr[i]);
+var quickSort = (arr, left, right) =>{
+    let pivot = arr[0];
+    let i = left, j = right;
+    if(left >= right)   
+        return;
+    while(i!==j){
+        while(arr[j] >= pivot && i<j)
+            j--;
+        while(arr[i] <= pivot && i<j)
             i++;
-        }            
-        else{
-            temp.push(arr[j]);
-            j++;
-        }
+        let temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
-    if(i === mid)
-        for(; j<= right; j++){
-            temp.push(arr[j]);
-        }
-    else
-        for(; i<= mid; i++){
-            temp.push(arr[i]);
-        }
-    return temp;
-}
+    arr[0] = arr[i];
+    arr[i] = pivot;
+    quickSort(arr, left, i-1);
+    quickSort(arr, i+1, right);
+    return arr;
+};
 
-
-console.log(insertSort([7,9,4,2,5,6,10,3,32,15,26]));
+//2,3,4,5,6,7,9,10,15,26,32
+console.log(quickSort([7,9,4,2,5,6,10,3,32,15,26], 0, 10));
