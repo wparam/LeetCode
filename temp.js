@@ -1,9 +1,12 @@
 var quickSort = (arr, left, right) =>{
     let pivot = arr[0];
     let i = left, j = right;
+    console.log(arr);
+    console.log(arr[left]);
+    console.log(arr[right]);
     if(left >= right)   
         return;
-    while(i!==j){
+    while(i<j){
         while(arr[j] >= pivot && i<j)
             j--;
         while(arr[i] <= pivot && i<j)
