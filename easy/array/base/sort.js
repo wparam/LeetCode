@@ -222,7 +222,7 @@ var quickSort = (() => {
             //i       j
             //after swap it is 13  62  15, so i and j both point to 62, now we need test 62 is 
             //bigger than pivot or not, so i<=j here, we have to do another test when i===j, 
-            //otherwise 62 won't be determined, since i and j are moved to 62 inevitablly
+            //otherwise 62 won't be checked, since i and j are moved to 62 inevitablly
             while(i<=j && arr[j]>pivot)
                 j--;
             while(i<=j && arr[i]<pivot)

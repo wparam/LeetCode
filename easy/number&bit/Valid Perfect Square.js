@@ -17,11 +17,15 @@
  * @return {boolean}
  */
 var isPerfectSquare = function(num) {
-    let a = 1;
-    while(a * a < num){
-        a++;
+    let left = 1, right = num;
+    while(left < right){
+        let mid = parseInt((left + right)/2);
+        if(mid * mid < num)
+            left = mid + 1;
+        else
+            right = mid;
     }
-    return a*a === num;
+    return left * left === num;
 };
 
-console.log(isPerfectSquare(14));
+console.log(isPerfectSquare(16));
