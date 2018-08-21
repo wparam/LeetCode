@@ -23,5 +23,31 @@
  * @return {boolean}
  */
 var isPalindrome = function(head) {
-    
+    let fast = head,
+        slow = head;
+    while(fast!==null && fast.next !== null){
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    let newlink = reverse(slow);
+    while(head!==null && newlink!==null){
+        if(head.val!== newlink.val){
+            return false;
+        }
+        head = head.next;
+        newlink = newlink.next;
+    }
+    return true;
 };
+
+var reverse = (head) => {
+    let pre = null,
+        cur = head;
+    while(cur!==null){
+        let temp = cur.next;
+        cur.next = pre;
+        pre = cur;
+        cur = temp;
+    }
+    return pre;
+}

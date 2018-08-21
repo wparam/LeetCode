@@ -15,5 +15,29 @@
  * @return {boolean}
  */
 var validPalindrome = function(s) {
-    
+    let flag = false;
+        left = 0,
+        right = s.length - 1;
+    while(left < right){
+        console.log(`left: ${s[left]}, right: ${s[right]}`);
+        if(!flag && s[left] !== s[right])
+            return false;
+        if(s[left] === s[right]){
+            left++;
+            right--;
+        }else if(s[left+1] === s[right] && !flag){
+            left+=2;
+            right--;
+            flag = true;
+        }else if(s[left] === s[right-1] && !flag){
+            left++;
+            right-=2;
+            flag = true;    
+        }else{
+            return false;
+        }
+    }
+    return true;
 };
+
+console.log(validPalindrome("aguokepatgbnvfqmgmlcupuufxoohdfpgjdmysgvhmvffcnqxjjxqncffvmhvgsymdjgpfdhooxfuupuculmgmqfvnbgtapekouga"));
