@@ -19,12 +19,14 @@
  * @return {number}
  */
 var minCostClimbingStairs = function(cost) {
-    return calculate(cost, 0);
+    return Math.min(calculate(cost, 0), calculate(cost, 1));
 };  
 
 var calculate = (cost, start) => {
     if(cost.length - start <= 1){
         return Math.min(cost[start], cost[cost.length-1]);
     }
-    return cost[start] + calculate(cost, start + 1);
+    return cost[start] + Math.min(calculate(cost, start + 1), calculate(cost, start + 2));
 };
+
+console.log(minCostClimbingStairs([10, 15, 20]));
