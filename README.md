@@ -8,5 +8,6 @@
 ### [$tag=jinzhi]
 ### [$tag=bit operate]
 ### [$tag=math]
+### [$tag=recursion2loop]
 
 ### Tag usage: add comment in first line: //[$tag=bit operate]
