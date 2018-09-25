@@ -26,7 +26,7 @@
             "type": "node",
             "request": "launch",
             "runtimeExecutable": "/home/jason/.nvm/versions/node/v6.11.0/bin/node",
-            "program": "${workspaceRoot}/easy/array/base/stack.js",
+            "program": "${workspaceRoot}/easy/linkedlist/IntersectionofTwoLinkedLists.js",
             "stopOnEntry": false,
             "args": [],
             "cwd": "${workspaceRoot}",

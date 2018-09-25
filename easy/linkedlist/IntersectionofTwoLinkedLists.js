@@ -27,6 +27,7 @@
  *     this.next = null;
  * }
  */
+const List = require('../../lib/linkedlist');
 
 /**
  * @param {ListNode} headA
@@ -36,3 +37,4 @@
 var getIntersectionNode = function(headA, headB) {
     
 };
+
