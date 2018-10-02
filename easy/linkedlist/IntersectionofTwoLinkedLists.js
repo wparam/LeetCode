@@ -35,6 +35,20 @@ const List = require('../../lib/linkedlist');
  * @return {ListNode}
  */
 var getIntersectionNode = function(headA, headB) {
-    
+    let pa = headA, pb = headB;
+    if(!pa || !pb)
+        return null;
+    while(true){
+        if(pa === pb)
+            return pa;
+        if(!pa && !pb) return null;
+        if(!pa) 
+            pa = headB;
+        else 
+            pa = pa.next;
+        if(!pb) 
+            pb = headA;
+        else 
+            pb = pb.next;
+    }
 };
-
