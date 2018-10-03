@@ -45,7 +45,10 @@ var hasGroupsSizeX = function(deck) {
             arr[deck[i]] = arr[deck[i]] + 1;
     }
     let g = -1;
+    console.log(arr);
     for(let i=0, l=arr.length; i<l; i++){
+        console.log(g);
+        console.log(arr[i]);
         if(arr[i]!==undefined){
             if(g === -1){
                 g = arr[i];
