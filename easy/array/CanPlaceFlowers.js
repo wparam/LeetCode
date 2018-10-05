@@ -19,13 +19,25 @@
  * @return {boolean}
  */
 var canPlaceFlowers = function(flowerbed, n) {
-    let start = 0,
+    let i = 0, 
+        l =  flowerbed.length - 1,
         ret = 0;
-    for(let i=0, l=flowerbed.length; i<l; i++){
+    while(i <= l){
         if(flowerbed[i] === 1){
-            ret += (i === 0 ? 0 : Math.floor((i - 1 - start) / 2));
-            start = i + 2;
+            i = i+2;
+        }else{
+            if(i+1>l) return ret+1>=n;
+            if(flowerbed[i+1]===0){
+                ret++;
+                i += 2;
+            }else{
+                i += 3;
+            }
         }
     }
+    return ret >= n;
 };
+
+
+console.log(canPlaceFlowers([1,0,0,0,1], 1));
 
