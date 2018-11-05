@@ -46,19 +46,23 @@
  * @param {TreeNode} root
  * @return {TreeNode}
  */
-require('../../lib/tree');
+const tree = require('../../lib/tree');
 
 var increasingBST = function(root) {
     if(!root)
-        return root;
-    // let left = 
-};
-
-const inOrder = (root) =>{
-    if(!root)
-        return root.val;
-    console.log(inOrder(root.left));
+        return null;
+    
+    increasingBST(root.left);
     console.log(root.val);
-    console.log(inOrder(root.right));
-
+    increasingBST(root.right);
 };
+
+const inOrder = (root, ) =>{
+    if(!root)
+        return null;
+    increasingBST(root.left);
+    x.right = root;
+    increasingBST(root.right);
+};
+
+console.log(tree.deserializeTree(increasingBST(tree.serializeTree([5,3,6,2,4,null,8,1,null,null,null,7,9]))));
