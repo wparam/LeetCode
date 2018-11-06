@@ -2,7 +2,7 @@ const tree = require('../../../lib/tree');
 
 const main = (root)=>{
     let result = [];
-    preorder(root, result);
+    result = preorderLoop(root);
     console.log(result);
 }
 
@@ -16,13 +16,20 @@ const preorderRec = (root, arr) => {
         preorder(root.right, arr);
 };
 
+//use stack to record once reach the bottom
 const preorderLoop = (root) => {
     if(!root)  
         return root;
-    let res = [];
-    res.push(root.val);
-    while(root.left)
-
+    let res = [],
+        node = root;
+    while(node){
+        res.push(node.val);
+        if(node.left)
+            node = node.left;
+        if(node.right)
+            node = node.right;
+        
+    }
     return res;
 }
 
