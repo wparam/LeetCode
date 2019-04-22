@@ -53,6 +53,8 @@ var reverseRec = (head) => {
     r.node.next = null;
     return r.head;
 };
+
+
 var reverse2 = (head) => {
     if(head.next === null){
         return { head: head, node: head};
@@ -61,6 +63,8 @@ var reverse2 = (head) => {
     ret.node.next = head;
     return {head: ret.head, node: head};
 }
+
+
 
 var h2 = {val:2, next:null};
 var h1 = {val:1, next:h2};
