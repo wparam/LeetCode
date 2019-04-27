@@ -13,6 +13,7 @@
  */
 'use strict';
 var util = require('util');
+const List = require('../../lib/linkedlist');
 var reverseList = function(head) {
     if(!head)
         return null;
@@ -49,11 +50,22 @@ var reverse1 = (head) => {
 
 //recurse
 var reverseRec = (head) => {
+    if(head.next === null)
+        return head;
+    let nextNode = head.next;
+    head.next = null;
+    let reverseNext = reverseRec(nextNode);
+    nextNode.next = head;
+    return reverseNext;
+};
+
+
+//Bad recurse
+var reverseRec1 = (head) => {
     let r = reverse2(head);
     r.node.next = null;
     return r.head;
 };
-
 
 var reverse2 = (head) => {
     if(head.next === null){
@@ -64,12 +76,6 @@ var reverse2 = (head) => {
     return {head: ret.head, node: head};
 }
 
-
-
-var h2 = {val:2, next:null};
-var h1 = {val:1, next:h2};
-var h0 = {val: 0, next: h1};
-console.dir(util.inspect(h0, false, null));
-console.dir(util.inspect(reverseRec(h0), false, null));
-// console.dir(util.inspect(reverseList(h0).next, false, null));
-// console.dir(util.inspect(reverseList(h0).next.next, false, null));
+console.log(List.Deserialize(
+    reverseRec(List.Serialize([1,2,3,4]))
+));
