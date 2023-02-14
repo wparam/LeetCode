@@ -44,5 +44,20 @@
  * @return {number}
  */
 var findPoisonedDuration = function (timeSeries, duration) {
-
+  let count = 0;
+  for(let i=0, l=timeSeries.length; i<l; i++){
+    if(i === l - 1){
+      count+=2;
+    }
+    else{
+      if(timeSeries[i+1] - timeSeries[i] >= 2){
+        count+=2;
+      }else{
+        count+=1;
+      }
+    }
+  }
+  return count;
 };
+
+console.log(findPoisonedDuration([1,4]))

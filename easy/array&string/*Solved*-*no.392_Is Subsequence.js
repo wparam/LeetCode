@@ -35,5 +35,32 @@
  * @return {boolean}
  */
 var isSubsequence = function (s, t) {
-
+  let reg = new RegExp(s.split('').join('\\w*'))
+  return reg.test(t);
 };
+
+
+var isSubsequence2 = function (s, t) {
+  let cursor = 0,
+      l = t.length;
+  for(let si=0, sl=s.length; si<sl; si++){
+    let flag = false;
+
+    for(let j=cursor; j<l; j++){
+      if(t[j] === s[si]){
+        cursor = j+1;
+        flag = true;
+        break;
+      }
+    }
+
+    if(!flag){
+      return false;
+    }
+  }
+  return true;
+};
+
+
+console.log(isSubsequence('axc', 'ahbgdc'))
+console.log(isSubsequence2('axc', 'ahbgdc'))
