@@ -34,22 +34,20 @@ const findClosestSmaller = function(src, n, comparator = (a,b)=>{ return a-b; })
   let left = 0;
   let right = src.length - 1;
   let lowest = -1;
-  // console.log(`---------------target is ${n}`)
   while(left <= right){
     const mid = (left + right) >> 1;
-    // console.log(`left is ${src[left]}, right: ${src[right]}, mid is ${src[mid]}`);
     const match = comparator(src[mid], n);
     if(match < 0){
-      left = mid + 1;
       lowest = mid;
+      left = mid + 1;
     }else if(match > 0){
       right = mid - 1;
     }else{
       return mid;
     }
   }
+  // console.log(`left:${left}, right: ${right}`)
   return lowest;
-  
 }
 
 
