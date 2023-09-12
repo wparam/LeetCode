@@ -32,4 +32,4 @@ var findLengthOfLCIS = function(nums) {
     return Math.max(cunmax, hismax);
 };
 
-console.log(findLengthOfLCIS([2,2,2,2,2]));
+console.log(findLengthOfLCIS([1,5,2,4,3]));
