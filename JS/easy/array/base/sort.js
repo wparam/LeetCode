@@ -205,7 +205,7 @@ var quickSort = (() => {
         return arr;
     };
 
-    //pivot = Math.floor(right + left)
+    //pivot = Math.floor(right + left)/2
     //when pivot is not leftmost nor rightmost, it is 
     var quickSort3 = (arr, left, right) => {
         if(left >= right)
