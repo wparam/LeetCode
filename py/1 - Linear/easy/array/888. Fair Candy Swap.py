@@ -19,7 +19,9 @@
 # Input: aliceSizes = [2], bobSizes = [1,3]
 # Output: [2,3]
 
-# utilize python's set
+#prompt: utilize python's set
+#prompt: utilize in operator wisely
+
 from typing import List
 
 def fairCandySwap(aliceSizes: List[int], bobSizes: List[int]) -> List[int]:
