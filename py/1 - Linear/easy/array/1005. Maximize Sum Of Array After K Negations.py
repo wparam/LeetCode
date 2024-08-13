@@ -24,5 +24,30 @@
 # Explanation: Choose indices (1, 4) and nums becomes [2,3,-1,5,4].
 from typing import List
 
-def largestSumAfterKNegations(self, nums: List[int], k: int) -> int:
-    
+def largestSumAfterKNegations(nums: List[int], k: int) -> int:
+    neg_ls = []
+    sum_all = 0
+    mini_abs = abs(nums[0])
+
+    for i in nums:
+        if i<0:
+            neg_ls.append(i)
+        
+        sum_all += abs(i)
+        if abs(i)<mini_abs:
+            mini_abs = abs(i)
+    if k < len(neg_ls):
+        sorted_one = sorted(neg_ls)
+        minus = 0
+        for i in sorted_one[k:]:
+            minus += i
+        return sum_all + 2 * minus
+
+    if (k - len(neg_ls)) % 2 == 0:
+        return sum_all
+
+    return sum_all - 2 * mini_abs
+
+
+print(largestSumAfterKNegations(nums = [5,6,9,-3,3], k = 2))
+
